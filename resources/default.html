@@ -17,7 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:400,bold,900,600">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 		  <!-- Custom styles for this template -->
- 		 <link href="css/custom.css" rel="stylesheet">
+ 		 <link href="./custom.css" rel="stylesheet">
 
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
  	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -34,7 +34,7 @@
 						is difficult for an attacker (a malicious supplicant) to hijack the
 						traffic of other supplicants as a man-in-the-middle (MITM). In
 						traditional Evil Twins attacks, attackers may deploy a bogus
-						wireless access point (AP) to hijack the victim supplicants’
+						wireless access point (AP) to hijack the victim supplicants'
 						traffic (e.g., stealing credentials). In this paper, we uncover a
 						new MITM attack that can evade the security mechanisms
 						in Wi-Fi networks by spoofing the legitimate AP to send a
@@ -66,25 +66,19 @@
 						vulnerability to the NPU manufacturers and the AP vendors,
 						we develop two countermeasures to throttle the identified attack.
 					<p style="font-size:20px; text-align: center">
-						<a href="assets/paper.pdf">Read the Paper</a>,
+						<a href="resources/WiFi_Interception_Oakland.pdf">Read the Paper</a>,
 						<a href="#bibtex" data-toggle="collapse" role="button">
 						Cite <i class="fa fa-quote-right" aria-hidden="true"></i></a>
 						<div id="bibtex" style="margin-top: 1.5em;" class="collapse" align="left">
 							<pre style="white-space: pre">
-							@inproceedings{wang2022ghosttalk,
-								author = {Wang, Yuanda and Guo, Hanqing and Yan, Qiben},
-								title = {GhostTalk: Interactive Attack on Smartphone Voice System Through Power Line},
-								booktitle={Network and Distributed Systems Security (NDSS) Symposium},
-								year = {2022},
-							}
+							to appear
 							</pre>
 						</div>
 					</p>
 				</div>
-			</div>
 
 
-				<h2>Features of GhostTalk</h2>
+				<h2>Features of Our Attack</h2>
 
 					<ul>
 						<li class="question">
@@ -102,17 +96,20 @@
 									Figure 1 illustrates the threat model of our man-in-themiddle (MITM) attack. The AP encrypts the network traffic of its supplicants via the security mechanisms developed by the Wi-Fi Alliance. The security mechanisms enforced by the AP can be WPA2 or WPA3. Accordingly, the security mode used by the AP can be WPA2-Personal, WPA2-Enterprise, WPA3-Personal, or WPA3-Enterprise. A victim supplicant (e.g., a mobile phone or a laptop) is attached to a public wireless AP to access remote servers on the Internet. The attacker is a malicious supplicant with no particular demands for the hardware or software. We assume the attacker can access the same AP in both personal mode and enterprise mode before launching our MITM attacks to hijack the traffic sent from the victim supplicant to the remote server.</p>
 								<div class ="centered">
 									<img src="../resources/Threat-model-wifi_00.png" width="400px" height="300px">
+									<h5 class="img-title">Fig1: Threat model of traffic hijacking in Wi-Fi networks.</h5>
 								</div>
 							<b> How does the attack work?</b>
 								<p class="answer">
 									Figure 2 presents the three steps of our attack. At the beginning, the traffic originating from the victim supplicant tothe remote server is sent to the AP and encrypted by a session key between the AP and the victim. The attacker may sniff the encrypted frames, but it cannot decrypt the packets without knowing the session key. In the first step of the attack, by leveraging the ICMP Destination Unreachable Message [14] that is unimpeded in Wi-Fi networks, the attacker focuses on probing the target Wi-Fi network to identify an exploitable UDP port on the victim supplicant. In the second step, the attacker crafts an ICMP redirect message embedded with a fake UDP header (carrying the probed open UDP port) to poison the victim supplicant’s routing. In the third step, the attacker evades WPAs and hijacks the victim supplicant’straffic in plaintext at the link layer. In the following, we elaborate the three steps.</p>
 								<div class ="centered">
 									<img src="../resources/steps_00.png" width="600px" height="800px">
+									<h5 class="img-title">Fig2:  Three attack steps in our MITM attack.</h5>
+
 								</div>
 							<b>What devices can be compromised by this attack?</b>
 								<p class="answer">
 								We conduct extensive real-world evaluations to measure the impacts of our attack. We first investigate if vulnerable APs can block crafted ICMP redirect messages issued from an attacker to a victim supplicant. We test 55 popular wireless routers in our lab and find that none of these routers can block forged ICMP redirect messages. Next, we evaluate our attack against the security mechanisms of WPA2 and WPA3 in both IPv4 and IPv6 Wi-Fi networks, respectively. We evaluate 122 real-world Wi-Fi networks and discover that 109 (89%) of them may suffer from our MITM attack.</p>							
-								<div class="item-content">
+								<!-- <div class="item-content">
 									<div class="img-content" style="width: 350px; float: left; margin-left: 20px">
 										<img src="../resources/overall_00.png" width="350px" height="300px">
 										<h5 class="img-title">Attacks evaluation based on 122 real-world Wi-Fi networks.</h5>
@@ -121,67 +118,48 @@
 										<img src="../resources/Vulnerable-AP_00.png" width="350px" height="300px">
 										<h5 class="img-title">Statistics of the 55 vulnerable wireless routers.</h5>
 									</div>
+								</div> -->
+								<div class="content">
+									<div class="item-content">
+										<div class="img-content">
+											<img class="myimg" src="../resources/overall_00.png" alt="">
+										</div>
+										<h5 class="img-title">Fig3: Attacks evaluation based on 122 real-world Wi-Fi networks.</h5>
+									</div>
+									<div class="item-content">
+										<div class="img-content">
+											<img class="myimg" src="../resources/Vulnerable-AP_00.png" alt="">
+										</div>
+										<h5 class="img-title">Fig4: Statistics of the 55 vulnerable wireless routers.</h5>
+									</div>
 								</div>
-									
-								
-							
-					<div class ="centered" style="clear:both">
-						<h2>GhostTalk Sample Audios</h2>
-						<div class ="boxed">
-							<p> These are natural speech audios and injected speech audios via GhostTalk. Can you distinguish them?
-							</p>
-						</div>
+								<br>
+								<br>
+								<div class ="centered">
+									<img src="../resources/router-table.png" width="800px" height="600px">
+									<h5 class="img-title">Table1: VULNERABLE WIRELESS ROUTERS ALLOWING CRAFTED ICMP REDIRECT MESSAGES TO PASS THROUGH.</h5>
+								</div>
 
-						<div style="margin-top=5em;">
-							<h3> Group A </h3>
-							<table>
-							<tr>
-								<td><audio controls>
-										<source src="./assets/01_A.wav" type="audio/wav">
-										Your browser does not support the <code>audio</code> element.
-									</audio></td>
-								<td><audio controls>
-										<source src="./assets/01_B.wav" type="audio/wav">
-										Your browser does not support the <code>audio</code> element.
-									</audio></td>
-							</tr>
-						</table>
-						<h3> Group B </h3>
-						<table><div class="centered">
-								<td><audio controls>
-										<source src="./assets/02_A.wav" type="audio/wav">
-										Your browser does not support the <code>audio</code> element.
-									</audio></td></div>
-								<td><audio controls class="centered">
-										<source src="./assets/02_B.wav" type="audio/wav">
-										Your browser does not support the <code>audio</code> element.
-									</audio></td>
-						</table>
+								<div class ="centered">
+									<img src="../resources/android-devices.png" width="400px" height="300px">
+									<h5 class="img-title">Table2: AFFECTED ANDROID DEVICES IN OUR TESTS.</h5>
+								</div>
 
-					</div>				
-					
-
-					<h2>GhostTalk Demo</h2>
+								<div class ="centered">
+									<img src="../resources/real-world.png" width="800px" height="600px">
+									<h5 class="img-title">Table3: EXPERIMENTAL RESULTS OF TRAFFIC HIJACKING IN 30 WI-FI NETWORKS.</h5>
+								</div>
+		
+					<h2>Attack Demo</h2>
 					<div class ="centered">
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/YUQqMCGIIik" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<iframe width="560" height="315" src="https://www.youtube.com/watch?v=emrW-rw5pfE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</div>
-					<h2>GhostTalk-SC Attack</h2>
-					<div class ="boxed">
-						<p>In case when the smartphones are charged by an unaltered standard cable, we discover that it is possible to recover the audio signal from smartphone loudspeakers by monitoring the charging current on the power line.
-						</p>
-						<br>
-						<p>To demonstrate the feasibility, we design GhostTalk-SC (Standard Cable), an adaptive eavesdropper system targeting smartphones charged in public USB ports.  To correctly recognize the private information in the audio, GhostTalk-SC carefully extracts audio spectra and integrates a neural network model to classify spoken digits in the speech. </p>
-		</div>
-		<div class ="centered">
-			<img src="assets/CNN_archi.jpg" width="800px" height="450px">
-		</div>
-			<h2>Countermeasure Recommendations</h2>
 
+					<h2>Countermeasure Recommendations</h2>
 					<ul>
-								<li class="answer"> &#9873  Disable the voice assistant activation by headphones.</li>
-								<li class="answer">  &#9873 Add headphone notification. </li>
-								<li class="answer">  &#9873 Stop charging after reaching high percentage battery level. </li>
+						<li class="answer"> &#9873  Enhancing Supplicants to Check Cross-Layer Interactions.</li>
+						<li class="answer">  &#9873 Enhancing APs to Throttle Crafted ICMP Redirects </li>
 					</ul>
-
+		</div>
 	</body>
 </html>
