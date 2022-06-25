@@ -65,19 +65,23 @@
 						networks are vulnerable to our attack. Besides notifying the
 						vulnerability to the NPU manufacturers and the AP vendors,
 						we develop two countermeasures to throttle the identified attack.
-					<p style="font-size:20px; text-align: center"><a href="assets/paper.pdf">Read the Paper</a>,
-					<a href="#bibtex" data-toggle="collapse" role="button">
-					Cite <i class="fa fa-quote-right" aria-hidden="true"></i></a>
-				<div id="bibtex" style="margin-top: 1.5em;" class="collapse" align="left">
-					<pre style="white-space: pre">
-@inproceedings{wang2022ghosttalk,
-    author = {Wang, Yuanda and Guo, Hanqing and Yan, Qiben},
-    title = {GhostTalk: Interactive Attack on Smartphone Voice System Through Power Line},
-    booktitle={Network and Distributed Systems Security (NDSS) Symposium},
-    year = {2022},
-}
-</pre></p></div>
-	</div>
+					<p style="font-size:20px; text-align: center">
+						<a href="assets/paper.pdf">Read the Paper</a>,
+						<a href="#bibtex" data-toggle="collapse" role="button">
+						Cite <i class="fa fa-quote-right" aria-hidden="true"></i></a>
+						<div id="bibtex" style="margin-top: 1.5em;" class="collapse" align="left">
+							<pre style="white-space: pre">
+							@inproceedings{wang2022ghosttalk,
+								author = {Wang, Yuanda and Guo, Hanqing and Yan, Qiben},
+								title = {GhostTalk: Interactive Attack on Smartphone Voice System Through Power Line},
+								booktitle={Network and Distributed Systems Security (NDSS) Symposium},
+								year = {2022},
+							}
+							</pre>
+						</div>
+					</p>
+				</div>
+			</div>
 
 
 				<h2>Features of GhostTalk</h2>
@@ -96,56 +100,66 @@
 							<b> What is the threat model?</b>
 								<p class="answer">
 									Figure 1 illustrates the threat model of our man-in-themiddle (MITM) attack. The AP encrypts the network traffic of its supplicants via the security mechanisms developed by the Wi-Fi Alliance. The security mechanisms enforced by the AP can be WPA2 or WPA3. Accordingly, the security mode used by the AP can be WPA2-Personal, WPA2-Enterprise, WPA3-Personal, or WPA3-Enterprise. A victim supplicant (e.g., a mobile phone or a laptop) is attached to a public wireless AP to access remote servers on the Internet. The attacker is a malicious supplicant with no particular demands for the hardware or software. We assume the attacker can access the same AP in both personal mode and enterprise mode before launching our MITM attacks to hijack the traffic sent from the victim supplicant to the remote server.</p>
-								<div class ="boxed">
-									<img src="./resources/Threat-model-wifi_00.png" width="800px" height="180px">
+								<div class ="centered">
+									<img src="./resources/Threat-model-wifi_00.png" width="400px" height="300px">
 								</div>
 							<b> How does the attack work?</b>
 								<p class="answer">
 									Figure 2 presents the three steps of our attack. At the beginning, the traffic originating from the victim supplicant tothe remote server is sent to the AP and encrypted by a session key between the AP and the victim. The attacker may sniff the encrypted frames, but it cannot decrypt the packets without knowing the session key. In the first step of the attack, by leveraging the ICMP Destination Unreachable Message [14] that is unimpeded in Wi-Fi networks, the attacker focuses on probing the target Wi-Fi network to identify an exploitable UDP port on the victim supplicant. In the second step, the attacker crafts an ICMP redirect message embedded with a fake UDP header (carrying the probed open UDP port) to poison the victim supplicant’s routing. In the third step, the attacker evades WPAs and hijacks the victim supplicant’straffic in plaintext at the link layer. In the following, we elaborate the three steps.</p>
-								<div class ="boxed">
-									<img src="./resources/steps_00.png" width="800px" height="180px">
+								<div class ="centered">
+									<img src="./resources/steps_00.png" width="600px" height="800px">
 								</div>
 							<b>What devices can be compromised by this attack?</b>
 								<p class="answer">
-									We conduct extensive real-world evaluations to measure the impacts of our attack. We first investigate if vulnerable APs can block crafted ICMP redirect messages issued from an attacker to a victim supplicant. We test 55 popular wireless routers in our lab and find that none of these routers can block forged ICMP redirect messages. Next, we evaluate our attack against the security mechanisms of WPA2 and WPA3 in both IPv4 and IPv6 Wi-Fi networks, respectively. We evaluate 122 real-world Wi-Fi networks and discover that 109 (89%) of them may suffer from our MITM attack.</p>							
-								<div class ="boxed">
-									<img src="./resources/overall_00.png" width="800px" height="180px">
+								We conduct extensive real-world evaluations to measure the impacts of our attack. We first investigate if vulnerable APs can block crafted ICMP redirect messages issued from an attacker to a victim supplicant. We test 55 popular wireless routers in our lab and find that none of these routers can block forged ICMP redirect messages. Next, we evaluate our attack against the security mechanisms of WPA2 and WPA3 in both IPv4 and IPv6 Wi-Fi networks, respectively. We evaluate 122 real-world Wi-Fi networks and discover that 109 (89%) of them may suffer from our MITM attack.</p>							
+								<div class="item-content">
+									<div class="img-content" style="width: 350px; float: left; margin-left: 20px">
+										<img src="./resources/overall_00.png" width="350px" height="300px">
+										<h5 class="img-title">Attacks evaluation based on 122 real-world Wi-Fi networks.</h5>
+									</div>
+									<div class="img-content" style="width: 350px; float: left; margin-left: 20px">
+										<img src="./resources/Vulnerable-AP_00.png" width="350px" height="300px">
+										<h5 class="img-title">Statistics of the 55 vulnerable wireless routers.</h5>
+									</div>
 								</div>
-								<div class ="boxed">
-									<img src="./resources/Vulnerable-AP_00.png" width="800px" height="180px">
-								</div>
+									
+								
+							
+					<div class ="centered" style="clear:both">
+						<h2>GhostTalk Sample Audios</h2>
+						<div class ="boxed">
+							<p> These are natural speech audios and injected speech audios via GhostTalk. Can you distinguish them?
+							</p>
+						</div>
 
-					<h2>GhostTalk Sample Audios</h2>
-					<div class ="boxed">
-						<p> These are natural speech audios and injected speech audios via GhostTalk. Can you distinguish them?
-						</p>
-					</div>
+						<div style="margin-top=5em;">
+							<h3> Group A </h3>
+							<table>
+							<tr>
+								<td><audio controls>
+										<source src="./assets/01_A.wav" type="audio/wav">
+										Your browser does not support the <code>audio</code> element.
+									</audio></td>
+								<td><audio controls>
+										<source src="./assets/01_B.wav" type="audio/wav">
+										Your browser does not support the <code>audio</code> element.
+									</audio></td>
+							</tr>
+						</table>
+						<h3> Group B </h3>
+						<table><div class="centered">
+								<td><audio controls>
+										<source src="./assets/02_A.wav" type="audio/wav">
+										Your browser does not support the <code>audio</code> element.
+									</audio></td></div>
+								<td><audio controls class="centered">
+										<source src="./assets/02_B.wav" type="audio/wav">
+										Your browser does not support the <code>audio</code> element.
+									</audio></td>
+						</table>
 
-					<div style="margin-top=5em;">
-						<h3> Group A </h3>
-						<table>
-						<tr>
-							<td><audio controls>
-									<source src="./assets/01_A.wav" type="audio/wav">
-									Your browser does not support the <code>audio</code> element.
-								</audio></td>
-							<td><audio controls>
-									<source src="./assets/01_B.wav" type="audio/wav">
-									Your browser does not support the <code>audio</code> element.
-								</audio></td>
-						</tr>
-					</table>
-					<h3> Group B </h3>
-					<table><div class="centered">
-							<td><audio controls>
-									<source src="./assets/02_A.wav" type="audio/wav">
-									Your browser does not support the <code>audio</code> element.
-								</audio></td></div>
-							<td><audio controls class="centered">
-									<source src="./assets/02_B.wav" type="audio/wav">
-									Your browser does not support the <code>audio</code> element.
-								</audio></td>
-					</table>
+					</div>				
+					
 
 					<h2>GhostTalk Demo</h2>
 					<div class ="centered">
